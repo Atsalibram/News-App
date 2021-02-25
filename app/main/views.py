@@ -1,6 +1,7 @@
-from flask import render_template
+from flask import render_template,request,redirect,url_for
 from . import main
-
+from ..request import get_News,get_News,search_news
+from ..models import Review
 # Views
 @main.route('/')
 def index():
