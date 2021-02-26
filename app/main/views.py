@@ -1,8 +1,9 @@
-from flask import render_template,request,redirect,url_for
+from flask import render_template, request, url_for
 from . import main
-from ..request import get_News,get_News,search_news
-from ..models import Review
-# Views
+from ..request import get_news_source, get_news_headlines, get_everything, tech_headlines
+
+
+
 @main.route('/')
 def index():
 
@@ -10,15 +11,19 @@ def index():
     View root page function that returns the index page and its data
     '''
 
-    title = 'Home - Welcome to the best news website online'
-    return render_template('index.html',title = title)
+    all_sources = get_news_source()
+    all_news = get_everything()
+    tech_stories = tech_headlines()
+    title = 'Falling Sky News'
 
-# Views
-@main.route('/news/<int:news_id>')
-def news(news_id):
+    return render_template('index.html', sources = all_sources, others = all_news, tech = tech_stories, title = title)
 
+@main.route('/source/<source>')
+def news_headlines(source):
     '''
-    View root page function that returns the index page and its data
+    Function pulls/gets the top and breakng news
     '''
-    message = 'Hello world'
-    return render_template('news.html',message = message)
+
+    title = "Falling Sky News"
+    news_headlines = get_news_headlines(source)
+    return render_template('articles.html', title = title, headlines = news_headlines)

@@ -1,43 +1,50 @@
-class News:
+class Source:
     '''
-    News class to define News Objects
+    Class the defines the sources object
     '''
 
-    def __init__(self,id,title,overview,poster,vote_average,vote_count):
-        self.id =id
+    def __init__(self, id, name, url, country, description):
+        self.id = id
+        self.name = name
+        self.url = url
+        self.country = country
+        self.description = description
+
+class Everything:
+    '''
+    Class That defines the news Objects
+    '''
+
+    def __init__(self, author, title, description, url, urlToImage, publishedAt):
+        self.author = author
         self.title = title
-        self.overview = overview
-        self.poster = 'https://image.tmdb.org/t/p/w500/'+ poster
-        self.vote_average = vote_average
-        self.vote_count = vote_count
+        self.description = description
+        self.url = url
+        self.urlToImage = urlToImage
+        self.publishedAt = publishedAt
 
-
-class Review:
-
-    all_reviews = []
-
-    def __init__(self,news_id,title,imageurl,review):
-        self.news_id = news_id
+class Headlines:
+    '''
+    Class That defines the headlines object
+    '''
+    def __init__(self, author, title, description, url, urlToImage, publishedAt):
+        self.author = author
         self.title = title
-        self.imageurl = imageurl
-        self.review = review
+        self.description = description
+        self.url = url
+        self.urlToImage = urlToImage
+        self.publishedAt = publishedAt
 
 
-    def save_review(self):
-        Review.all_reviews.append(self)
-
-
-    @classmethod
-    def clear_reviews(cls):
-        Review.all_reviews.clear()
-
-    @classmethod
-    def get_reviews(cls,id):
-
-        response = []
-
-        for review in cls.all_reviews:
-            if review.news_id == id:
-                response.append(review)
-
-        return response
+class Tech:
+    """
+    Class that defines the Tech object
+    """
+    
+    def __init__(self,author, title, description, url, urlToImage, publishedAt):
+        self.author = author
+        self.title = title
+        self.description = description
+        self.url = url
+        self.urlToImage = urlToImage
+        self.publishedAt = publishedAt
